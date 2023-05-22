@@ -5,5 +5,3 @@ node_modules
 dist
 dist-ssr
 *.local
-.history
-pnpm-lock.yaml
