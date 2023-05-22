@@ -21,13 +21,13 @@ interface LayoutSettings {
 }
 
 const layoutSettings: LayoutSettings = {
-  showSettings: true,
-  showTagsView: true,
+  showSettings: false,
+  showTagsView: false,
   fixedHeader: true,
   showSidebarLogo: true,
   showNotify: true,
-  showThemeSwitch: true,
-  showScreenfull: true,
+  showThemeSwitch: false,
+  showScreenfull: false,
   showGreyMode: false,
   showColorWeakness: false
 }

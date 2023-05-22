@@ -2,7 +2,7 @@ import { type RouteRecordRaw, createRouter, createWebHashHistory, createWebHisto
 
 const Layout = () => import("@/layout/index.vue")
 
-/** 常驻路由 */
+/** 常驻路由，无需进行权限验证 */
 export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/redirect",
@@ -67,6 +67,22 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "UnoCSS",
         meta: {
           title: "unocss",
+          svgIcon: "unocss"
+        }
+      }
+    ]
+  },
+  {
+    path: "/practice",
+    component: Layout,
+    redirect: "/practice/index",
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/practice/index.vue"),
+        name: "Practice",
+        meta: {
+          title: "Practice",
           svgIcon: "unocss"
         }
       }

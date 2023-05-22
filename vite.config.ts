@@ -5,6 +5,7 @@ import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
+import AutoImport from "unplugin-auto-import/vite"
 import svgLoader from "vite-svg-loader"
 import UnoCSS from "unocss/vite"
 
@@ -69,6 +70,16 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     plugins: [
       vue(),
       vueJsx(),
+      AutoImport({
+        include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
+        imports: "vue",
+        eslintrc: {
+          enabled: false, // Default `false`
+          filepath: "types/.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
+          globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        },
+        dts: "types/auto-imports.d.ts"
+      }),
       /** 将 SVG 静态图转化为 Vue 组件 */
       svgLoader({ defaultImport: "url" }),
       /** SVG */

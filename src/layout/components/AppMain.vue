@@ -2,12 +2,21 @@
 import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { useTagsViewStore } from "@/store/modules/tags-view"
+import { useSettingsStore } from "@/store/modules/settings"
 
 const route = useRoute()
 const tagsViewStore = useTagsViewStore()
+const { showTagsView } = useSettingsStore()
 
 const key = computed(() => {
   return route.path
+})
+onBeforeMount(() => {
+  if (!showTagsView) {
+    const root = document.querySelector(":root")! as HTMLElement
+    const naviHeight = getComputedStyle(root).getPropertyValue("--v3-navigationbar-height")
+    root.style.setProperty("--v3-header-height", naviHeight)
+  }
 })
 </script>
 
