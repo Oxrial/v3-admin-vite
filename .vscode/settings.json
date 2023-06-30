@@ -1,7 +1,13 @@
 {
-  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  "eslint.format.enable": true,
+  "colorize.languages": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": false,
+    "eslint.autoFixOnSave": true
   },
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

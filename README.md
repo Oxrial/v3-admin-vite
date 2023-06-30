@@ -1,4 +1,6 @@
-# ROUTER
+# Custom
+
+## ROUTER
 
 ```
 {
@@ -48,3 +50,76 @@
   }
 }
 ```
+
+# ORIGIN
+
+## 📦️ Multi-environment packaging
+
+```bash
+# build the stage environment
+pnpm build:stage
+
+# build the prod environment
+pnpm build:prod
+```
+
+## 🔧 Code inspection
+
+```bash
+# code formatting
+pnpm lint
+
+# unit test
+pnpm test
+```
+
+## Git commit specification reference
+
+- `feat` add new functions
+- `fix` Fix issues/bugs
+- `perf` Optimize performance
+- `style` Change the code style without affecting the running result
+- `refactor` Re-factor code
+- `revert` Undo changes
+- `test` Test related, does not involve changes to business code
+- `docs` Documentation and Annotation
+- `chore` Updating dependencies/modifying scaffolding configuration, etc.
+- `workflow` Work flow Improvements
+- `ci` CICD
+- `types` Type definition
+- `wip` In development
+
+## Project preview
+
+![preview1.png](./src/assets/docs/preview1.png)
+![preview2.png](./src/assets/docs/preview2.png)
+![preview3.png](./src/assets/docs/preview3.png)
+
+## 💕 Contributors
+
+Thanks to all the contributors!
+
+<a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
+</a>
+
+## 💕 Thanks star
+
+Small projects are not easy to get a star, if you like this project, welcome to support a star! This is the only motivation for the author to maintain it on an ongoing basis (whisper: it's free after all)
+
+## ☕ Donate
+
+[See how to donate](https://github.com/un-pany/v3-admin-vite/issues/69)
+
+## Group
+
+QQ group：1014374415 (left) && add me on WeChat，Invite you to join WeChat group (right)
+
+![qq.png](./src/assets/docs/qq.png)
+![wechat.png](./src/assets/docs/wechat.png)
+
+## 📄 License
+
+[MIT](./LICENSE)
+
+Copyright (c) 2022-present [pany](https://github.com/pany-ang)

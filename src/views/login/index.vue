@@ -13,6 +13,8 @@ import { type FormInstance, FormRules } from "element-plus"
 import { type LoginRequestData } from "@/api/login/types/login"
 
 const router = useRouter()
+
+/** 登录表单元素的引用 */
 const loginFormRef = ref<FormInstance | null>(null)
 
 /** 登录按钮 Loading */
@@ -20,7 +22,7 @@ const loading = ref(false)
 /** 验证码图片 URL */
 // const codeUrl = ref("")
 /** 登录表单数据 */
-const loginForm: LoginRequestData = reactive({
+const loginFormData: LoginRequestData = reactive({
   username: "admin",
   password: "12345678"
   // code: ""
@@ -36,27 +38,23 @@ const loginFormRules: FormRules = {
 }
 /** 登录逻辑 */
 const handleLogin = () => {
-  loginFormRef.value?.validate((valid: boolean) => {
+  loginFormRef.value?.validate((valid: boolean, fields) => {
     if (valid) {
       loading.value = true
       useUserStore()
-        .login({
-          username: loginForm.username,
-          password: loginForm.password
-          // code: loginForm.code
-        })
+        .login(loginFormData)
         .then(() => {
           router.push({ path: "/" })
         })
         .catch(() => {
           // createCode()
-          loginForm.password = ""
+          loginFormData.password = ""
         })
         .finally(() => {
           loading.value = false
         })
     } else {
-      return false
+      console.error("表单校验不通过", fields)
     }
   })
 }
@@ -83,10 +81,10 @@ const handleLogin = () => {
         <img src="@/assets/layout/logo-text-2.png" />
       </div>
       <div class="content">
-        <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" @keyup.enter="handleLogin">
+        <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
           <el-form-item prop="username">
             <el-input
-              v-model.trim="loginForm.username"
+              v-model.trim="loginFormData.username"
               placeholder="用户名"
               type="text"
               tabindex="1"
@@ -96,7 +94,7 @@ const handleLogin = () => {
           </el-form-item>
           <el-form-item prop="password">
             <el-input
-              v-model.trim="loginForm.password"
+              v-model.trim="loginFormData.password"
               placeholder="密码"
               type="password"
               tabindex="2"
@@ -107,7 +105,7 @@ const handleLogin = () => {
           </el-form-item>
           <!-- <el-form-item prop="code">
             <el-input
-              v-model.trim="loginForm.code"
+              v-model.trim="loginFormData.code"
               placeholder="验证码"
               type="text"
               tabindex="3"
@@ -118,10 +116,14 @@ const handleLogin = () => {
               <template #append>
                 <el-image :src="codeUrl" @click="createCode" draggable="false">
                   <template #placeholder>
-                    <el-icon><Picture /></el-icon>
+                    <el-icon>
+                      <Picture />
+                    </el-icon>
                   </template>
                   <template #error>
-                    <el-icon><Loading /></el-icon>
+                    <el-icon>
+                      <Loading />
+                    </el-icon>
                   </template>
                 </el-image>
               </template>
